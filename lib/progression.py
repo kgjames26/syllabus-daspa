@@ -1,0 +1,93 @@
+"""Progression complète des 3 volumes. Source unique utilisée par le guide et par les modules."""
+
+VOLUMES = [
+    dict(code="V1", titre="Premiers pas", niveau="Alpha → A1", pages=600, couleur="#E4572E",
+         public="Grands débutants, y compris élèves non lecteurs et non scripteurs (parcours ★ Alpha intégré).",
+         visee="Survivre et s'intégrer à l'école et dans la vie quotidienne : se présenter, comprendre les consignes, lire et écrire des mots et des phrases simples."),
+    dict(code="V2", titre="Je me débrouille", niveau="A2", pages=800, couleur="#2BA88F",
+         public="Élèves qui maîtrisent l'oral de base et le code écrit (fin du volume 1 ou test de positionnement).",
+         visee="Agir seul dans les situations courantes, raconter au passé, lire des documents fonctionnels et les premiers textes scolaires."),
+    dict(code="V3", titre="Je réussis à l'école", niveau="B1 + FLSco", pages=1000, couleur="#4A7BD1",
+         public="Élèves autonomes en communication courante, en préparation du passage en classe ordinaire.",
+         visee="Maîtriser le français de scolarisation : comprendre les cours, lire des manuels, rédiger des écrits scolaires, argumenter."),
+]
+
+# chaque module : (titre, communication, lexique, grammaire, phonétique/code, alpha, document_de_vie, flsco, tache_finale)
+V1 = [
+    ("Bonjour !", "Saluer, se présenter, demander le nom, l'âge, le pays", "Salutations, pays, langues, nombres 0–20, matériel de classe de base",
+     "Je m'appelle… / J'ai … ans / Je viens de… ; être et avoir (je, tu) ; la phrase simple", "Les voyelles [a] [i] [o] [u] ; l'alphabet, épeler",
+     "Tenir le crayon, graphisme, voyelles a i o u e, son prénom", "Carte d'élève, fiche d'inscription", "Les 24 pictogrammes de consignes", "Ma carte d'élève + présenter un camarade"),
+    ("Mon école", "Nommer les objets et les lieux, demander de l'aide, s'excuser", "Objets de la classe, lieux de l'école, personnes de l'école",
+     "Un/une/des, le/la/les ; il y a ; c'est / ce sont ; le pluriel en -s", "[y] / [u] ; [s] / [z]", "Lettres m, l, s, r ; premières syllabes", "Plan de l'école, horaire de cours", "Les consignes à 2 actions", "Guide illustré de l'école pour un nouvel élève"),
+    ("Le temps qui passe", "Dire la date, l'heure, parler de son horaire", "Jours, mois, saisons, nombres 21–69, heure",
+     "Présent des verbes en -er (singulier) ; quel(le) ; à + heure", "[e] / [ɛ] ; liaisons avec les nombres", "Lettres p, t, d, n ; syllabes inversées (al, ot)", "Journal de classe, calendrier scolaire", "Lire un tableau à double entrée", "Remplir son journal de classe pour une semaine"),
+    ("Ma famille et moi", "Présenter sa famille, décrire une personne", "Famille, description physique, caractère simple",
+     "Adjectifs possessifs ; accord de l'adjectif (masc./fém.) ; avoir / être complets", "[f] / [v] ; [ʃ] / [ʒ]", "Lettres f, v, ch, j", "Arbre généalogique, faire-part, post de réseau social", "Décrire une image", "Présenter sa famille (affiche)"),
+    ("Mon corps, ma santé", "Dire où on a mal, comprendre le médecin, appeler à l'aide", "Corps, maladies courantes, infirmerie, pharmacie",
+     "Avoir mal au / à la / aux ; impératif (consignes) ; il faut + infinitif", "[k] (c, k, qu) ; [g]", "Lettres c, k, qu, g ; le c dur/doux", "Carte de rendez-vous, notice simplifiée, numéros d'urgence (112)", "Comprendre une consigne de sécurité", "Jeu de rôle chez le médecin + fiche « urgence »"),
+    ("À table !", "Exprimer ses goûts, commander, inviter à manger", "Aliments, repas, couverts, cantine",
+     "Aimer / adorer / détester ; la négation ne… pas ; articles partitifs du / de la / des", "[b] / [p] ; [u] (ou) ; [ɔ̃] (on)", "Lettres b ; sons ou, on", "Menu de la cantine, recette", "Lire une recette : suivre des étapes", "Composer le menu de la semaine de la classe"),
+    ("Faire les courses", "Demander un prix, payer, compter l'argent", "Magasins, euros, quantités, emballages, nombres 70–1000",
+     "Vouloir / pouvoir ; combien ; je voudrais ; beaucoup de / un peu de", "[ɑ̃] (an, en) ; [ɛ̃] (in) ; [wa] (oi)", "Sons an/en, in, oi", "Dépliant publicitaire, ticket de caisse, étiquettes", "Résoudre un petit problème de prix", "Faire une liste de courses avec un budget"),
+    ("Vêtements et météo", "Décrire une tenue, parler du temps qu'il fait, conseiller", "Vêtements, couleurs, saisons, météo",
+     "Accord des adjectifs de couleur ; il fait / il pleut / il neige ; mettre", "[e] (é) / [ɛ] (è, ê, ai)", "Accents é, è, ê ; ai, ei", "Bulletin météo, catalogue de vêtements", "Lire un pictogramme météo, une légende", "Conseiller une tenue pour la semaine"),
+    ("Ma ville, mon quartier", "Demander et indiquer un chemin, se déplacer", "Lieux de la ville, transports, directions",
+     "Aller à (au, à la, aux) ; prépositions de lieu ; impératif pour les directions", "[ø] / [œ] (eu) ; [ɲ] (gn) ; [j] (ill)", "Sons eu, gn, ill", "Plan de quartier, horaire de bus, panneaux", "Lire un plan, une légende", "Itinéraire illustré de l'école à la maison"),
+    ("Ma journée", "Raconter sa routine, dire la fréquence", "Actions du quotidien, moments de la journée",
+     "Verbes pronominaux (se lever) ; d'abord / ensuite / enfin ; toujours / souvent / jamais", "Lettres muettes ; x, z", "Lettres muettes ; x, z, w, y", "Emploi du temps, bande dessinée", "Mettre des images dans l'ordre (chronologie)", "Raconter sa journée en BD ou en vlog"),
+    ("Loisirs et sport", "Parler de ses loisirs, inviter, accepter, refuser", "Sports, loisirs, activités, lieux de loisirs",
+     "Faire du / de la ; jouer au / à la ; on ; questions (est-ce que)", "Intonation de la question", "Lecture de phrases complètes", "Affiche de maison de jeunes, formulaire d'inscription à un club", "Remplir un formulaire", "Écrire une invitation + répondre"),
+    ("Hier et demain", "Raconter un événement passé, parler de projets", "Marqueurs de temps, activités du week-end, vacances",
+     "Passé composé avec avoir ; futur proche (aller + infinitif)", "Révision de tous les sons", "Lire un petit texte de 5 phrases", "Carte postale, message, invitation", "Distinguer passé / présent / futur dans une consigne", "Mon carnet de réussites + bilan A1"),
+]
+
+V2 = [
+    ("Nouveau départ", "Se présenter en détail, parler de son parcours", "Pays, langues, études, qualités", "Révision présent ; passé composé (avoir/être)", "Courriel de bienvenue, profil d'élève", "Comprendre un règlement d'ordre intérieur", "Mon portrait de langues"),
+    ("Chez moi", "Décrire un logement, régler un problème avec un voisin", "Pièces, meubles, équipements, voisinage", "Prépositions de lieu ; pronoms y et en (lieu)", "Annonce immobilière, règlement d'immeuble", "Lire un plan à l'échelle", "Annonce de logement + lettre au propriétaire"),
+    ("Souvenirs d'enfance", "Raconter et décrire au passé", "Enfance, jeux, école d'autrefois", "Imparfait ; imparfait ou passé composé ?", "Album photo, témoignage", "Lire une frise chronologique", "Récit d'un souvenir"),
+    ("Émotions et caractère", "Exprimer ses sentiments, réagir, consoler", "Émotions, caractère, relations", "Pronoms COD / COI ; c'est / il est", "Courrier des lecteurs, BD", "Le vocabulaire des sentiments dans un récit", "Lettre à un ami"),
+    ("Prendre soin de soi", "Prendre rendez-vous, expliquer ses symptômes", "Santé, médecins, mutuelle, sommeil", "Depuis / il y a / pendant ; devoir + infinitif", "Notice de médicament, carte de mutuelle fictive", "Lire un texte explicatif", "Dialogue au téléphone + fiche santé"),
+    ("Découvrir la Belgique", "Présenter une région, une fête, une tradition", "Régions, villes, fêtes, institutions simples", "Comparatif et superlatif", "Dépliant touristique, carte de Belgique", "Lire une carte et sa légende", "Exposé illustré d'une ville"),
+    ("En route !", "Acheter un billet, comprendre un horaire, gérer un retard", "Train, bus, voyage, gare", "Futur simple ; si + présent", "Horaire de train, billet, annonce en gare", "Lire un horaire complexe", "Planifier une excursion de classe"),
+    ("Écrans et médias", "Écrire un message, se protéger en ligne", "Numérique, réseaux sociaux, sécurité", "Pronoms relatifs qui / que / où", "Courriel, conditions d'utilisation simplifiées", "Distinguer fait et opinion", "Charte numérique de la classe"),
+    ("Bien manger", "Lire une étiquette, donner un conseil", "Nutrition, saveurs, cuisine du monde", "Conseiller : il faut / tu devrais ; quantités", "Étiquette nutritionnelle, recette", "Lire un tableau de données", "Livre de recettes de la classe"),
+    ("Notre planète", "Expliquer un geste écologique, convaincre", "Déchets, tri, énergie, nature", "La cause et la conséquence (parce que, donc)", "Calendrier de collecte des déchets, affiche", "Lire un graphique simple", "Campagne d'affiches pour l'école"),
+    ("Métiers et stages", "Parler d'un métier, se préparer à un stage", "Métiers, qualités, lieux de travail", "Conditionnel de politesse ; questions formelles", "Offre de stage, CV simple", "Comprendre une fiche métier", "Mon CV + entretien simulé"),
+    ("Démarches", "Remplir un formulaire, comprendre un courrier officiel", "Administration, commune, papiers", "Le passif reconnu ; les abréviations", "Formulaire communal, courrier officiel fictif", "Les mots des consignes administratives", "Dossier de démarche complet"),
+    ("Contes du monde", "Lire et raconter un conte", "Personnages, lieux, objets magiques", "Récit au passé ; connecteurs de temps", "Conte illustré, quatrième de couverture", "Le schéma narratif", "Raconter un conte de son pays"),
+    ("Mes projets", "Parler de l'avenir, exprimer un souhait", "Études, orientation, rêves", "Futur simple / futur proche ; j'aimerais", "Brochure d'orientation, lettre", "Lire un organigramme des études", "Mon projet d'avenir (présentation orale)"),
+]
+
+V3 = [
+    ("Apprendre à apprendre", "Organiser son travail, prendre des notes", "Méthodologie, mémoire, outils", "Révision des temps ; l'impératif des consignes", "Journal de classe, planning d'étude", "Les verbes des consignes scolaires (analyser, justifier…)", "Mon plan d'étude personnel"),
+    ("La langue des maths", "Lire un énoncé, expliquer une démarche", "Opérations, géométrie, mesures", "Les phrases conditionnelles ; les nombres ordinaux", "Énoncé de problème, facture", "Reformuler un énoncé", "Créer des problèmes pour la classe"),
+    ("La langue des sciences", "Décrire une expérience, formuler une hypothèse", "Matière, vivant, laboratoire", "Le présent de vérité générale ; la cause", "Protocole de laboratoire, schéma légendé", "Écrire un rapport d'expérience", "Rapport de laboratoire complet"),
+    ("Raconter l'Histoire", "Situer un événement, lire un document historique", "Époques, dates, acteurs", "Le passé simple (reconnaissance) ; le plus-que-parfait", "Frise, document source, affiche ancienne", "Analyser un document historique", "Fiche d'exposé sur un événement"),
+    ("Lire le monde (géographie)", "Décrire un paysage, lire une carte", "Relief, climat, population", "Les expressions de la comparaison et de la proportion", "Carte, climatogramme, photo de paysage décrite", "Lire un climatogramme", "Dossier sur un pays"),
+    ("Lire un roman", "Comprendre un récit long, parler de ses lectures", "Personnages, narration, émotions", "Le discours rapporté (direct / indirect)", "Extraits d'un roman jeunesse original", "Le carnet de lecture", "Booktube ou carnet de lecteur"),
+    ("Donner son avis", "Argumenter, nuancer, réfuter", "Opinion, débat, valeurs", "Connecteurs logiques ; subjonctif après il faut que", "Courrier des lecteurs, forum", "Le texte argumentatif", "Débat organisé + texte d'opinion"),
+    ("S'informer", "Comprendre une information, vérifier une source", "Presse, médias, réseaux", "Le passif ; la nominalisation", "Article de presse fictif, une de journal", "Distinguer info, opinion, publicité", "Journal de la classe"),
+    ("Le récit", "Écrire une nouvelle", "Suspense, description, lieux", "Les temps du récit ; la description", "Nouvelles originales", "Le schéma narratif complet", "Recueil de nouvelles"),
+    ("Poésie et chanson", "Lire, dire et écrire un poème", "Images, rimes, sons", "Figures de style simples", "Poèmes du domaine public (Hugo, Verlaine, Desbordes-Valmore…)", "Analyser un poème", "Récital de la classe"),
+    ("Citoyens", "Connaître ses droits et devoirs, participer", "Démocratie, école, droits de l'enfant", "Le subjonctif (obligation, souhait)", "Règlement, charte, bulletin de vote fictif", "Lire un texte de loi simplifié", "Élection des délégués + programme"),
+    ("Vers le monde du travail", "Écrire une lettre de motivation, passer un entretien", "Emploi, compétences, formation", "Le conditionnel ; le registre formel", "Offre d'emploi, lettre de motivation", "Les écrits professionnels", "Dossier de candidature complet"),
+    ("Corps et santé (sciences)", "Expliquer un phénomène du corps humain", "Organes, fonctions, prévention", "Le texte explicatif : cause, conséquence, but", "Infographie, article de vulgarisation", "Lire une infographie", "Capsule explicative"),
+    ("Le théâtre", "Lire et jouer une scène", "Scène, réplique, didascalie", "Les types et formes de phrases ; l'exclamation", "Extraits de Molière (domaine public), scènes originales", "Lire un texte théâtral", "Représentation d'une scène"),
+    ("Résumer, synthétiser", "Résumer un texte, faire une synthèse", "Mots de la synthèse", "La reformulation ; les substituts", "Textes documentaires", "Le résumé et le compte rendu", "Synthèse de documents"),
+    ("Passerelle", "Se préparer à la classe ordinaire et aux épreuves", "Toutes les disciplines", "Révision générale", "Épreuves de type externe et DELF", "Méthodes de toutes les disciplines", "Dossier passerelle + épreuve blanche"),
+]
+
+SPIRALE = [
+    ("Se présenter", ["V1·M1", "V1·M4", "V1·M12", "V2·M1", "V2·M11", "V3·M12"]),
+    ("Consignes scolaires", ["Chaque module (rubrique « Consignes »)", "V1·M1 (pictos)", "V1·M2", "V3·M1"]),
+    ("Nombres et argent", ["V1·M1 (0–20)", "V1·M3 (21–69)", "V1·M7 (70–1000)", "V2·M9", "V3·M2"]),
+    ("Le temps (date, heure)", ["V1·M3", "V1·M10", "V2·M7", "V3·M1"]),
+    ("Présent", ["V1·M1–M3", "V1·M10", "V2·M1", "V3·M3 (vérité générale)"]),
+    ("Passé composé", ["V1·M12", "V2·M1", "V2·M3", "V2·M13", "V3·M4"]),
+    ("Imparfait", ["V2·M3", "V2·M13", "V3·M6", "V3·M9"]),
+    ("Futur", ["V1·M12 (proche)", "V2·M7", "V2·M14", "V3·M12"]),
+    ("Santé / urgences", ["V1·M5", "V2·M5", "V3·M13"]),
+    ("Documents administratifs", ["V1·M1", "V1·M11", "V2·M12", "V3·M12"]),
+    ("Récit", ["V1·M10 (BD)", "V2·M3", "V2·M13", "V3·M6", "V3·M9"]),
+    ("Argumenter", ["V1·M6 (goûts)", "V2·M10", "V3·M7", "V3·M8"]),
+]
