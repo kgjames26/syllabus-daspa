@@ -14,7 +14,7 @@ CP = ('<div style="background:' + CPCOL + ';margin:-17mm -14mm 4mm -14mm;padding
 EPR = ('<div style="background:#1F2A44;color:#fff;margin:-17mm -14mm 4mm -14mm;padding:14mm 14mm 4mm 14mm"><div style="font-size:10.5pt;font-weight:700;opacity:.85;letter-spacing:1px">🎓 VERS LES ÉPREUVES · {k}</div>'
        '<div style="font-size:21pt;font-weight:800">{t}</div></div>')
 
-DISC = {"maths": ("📐", "#E4572E"), "sciences": ("🔬", "#2BA88F"), "histoire": ("🏛️", "#9B5DE5"), "géographie": ("🗺️", "#4A7BD1"), "français": ("📚", "#D1495B")}
+DISC = {"maths": ("📐", "#E4572E"), "sciences": ("🔬", "#2BA88F"), "histoire": ("🏛️", "#9B5DE5"), "géographie": ("🗺️", "#4A7BD1"), "français": ("📚", "#D1495B"), "citoyenneté": ("⚖️", "#6B8F3E")}
 
 
 def disc_tag(d):
