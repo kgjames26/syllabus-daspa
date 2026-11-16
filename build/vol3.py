@@ -13,13 +13,13 @@ import lib.v3
 from lib.toc import build_toc
 from build.annexes import build_annexes
 
-BUILDERS = []
+BUILDERS = []  # (numéro du module, fonction) : un module manquant est sauté (sommaire : « à venir »)
 for k in range(1, 17):
     try:
         mod = importlib.import_module(f"build.v3_m{k}")
-        BUILDERS.append(getattr(mod, f"build_v3m{k}"))
+        BUILDERS.append((k, getattr(mod, f"build_v3m{k}")))
     except ModuleNotFoundError:
-        break
+        continue
 
 TMP = '/home/claude/syllabus/build/tmp3'
 os.makedirs(TMP, exist_ok=True)
@@ -30,7 +30,7 @@ COL = "#4A7BD1"
 def build_all(toc_pages):
     books = []
     start, tstart = 1, gpages + 2 + toc_pages  # guide + sommaire + table détaillée
-    for fn in BUILDERS:
+    for _, fn in BUILDERS:
         b, T = fn(start=start, tstart=tstart, render=False)
         books.append((b, T))
         start, tstart = b.n + 1, T.n + 1
@@ -38,7 +38,7 @@ def build_all(toc_pages):
 
 
 def modlist(books):
-    return [(i + 1, V1[i][0], b, T) for i, (b, T) in enumerate(books)]
+    return [(k, V1[k - 1][0], b, T) for (k, _), (b, T) in zip(BUILDERS, books)]
 
 
 # itération : le nombre de pages de la table prof décale la numérotation des livrets
@@ -56,9 +56,10 @@ TE = build_toc(Book, "V3 · Index", "Volume 3 · Je réussis à l\'école · Ind
 
 def sommaire(kind):
     rows = []
+    done = {k: bt for (k, _), bt in zip(BUILDERS, books)}
     for i, m in enumerate(V1):
-        if i < len(books):
-            b, T = books[i]
+        if i + 1 in done:
+            b, T = done[i + 1]
             pg = min(min(v) for v in b.marks.values()) if kind == "e" else min(min(v) for v in T.marks.values())
             last = b.n if kind == "e" else T.n
             rows.append([f'<b style="font-size:13pt">{i+1}</b>', f'<b>{m[0]}</b><div class="xs muted">{m[1]}</div>', f'<span class="sm">{m[-1]}</span>', f'<b>p. {pg}–{last}</b>'])
