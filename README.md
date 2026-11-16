@@ -11,7 +11,7 @@ Génère les PDF élève et enseignant des 3 volumes (HTML + Chrome headless →
 4. Progression complète des 3 volumes : `lib/progression.py`.
 
 ## État
-- Volume 2 « Je me débrouille » (A2, 14 modules) : M1-M2 faits (build/v2_m*.py). Réglages V2 dans lib/v2.py (★ Coup de pouce remplace ★ Alpha, couverture). Assemblage : python3 build/vol2.py. Suite : V2 M3 « Souvenirs d enfance ».
+- Volume 2 « Je me débrouille » (A2, 14 modules) : M1-M3 faits (build/v2_m*.py). Réglages V2 dans lib/v2.py (★ Coup de pouce remplace ★ Alpha, couverture). Assemblage : python3 build/vol2.py. Suite : V2 M4 « Émotions et caractère ».
 - Volume 1 : TERMINÉ — 12 modules + annexes (8 p. de mémos, build/annexes.py) + table des matières détaillée et index (lib/toc.py), en tête du PDF prof et à la fin du PDF élève.
 - Volumes 2 et 3 : à faire (créer build/vol2.py, vol3.py sur le modèle de vol1.py).
 - Taille choisie pour la suite : modules complets (40-50 pages).
