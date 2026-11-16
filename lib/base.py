@@ -98,6 +98,9 @@ class Book:
         if not hasattr(self, "marks"):
             self.marks = {}
         self.marks.setdefault(section or "_", []).append(self.n)
+        if not hasattr(self, "raw"):
+            self.raw = []
+        self.raw.append((self.n, section, body))
         col = color or self.color
         if full:
             html = f'<section class="page full" style="--mc:{col}">{body}</section>'
