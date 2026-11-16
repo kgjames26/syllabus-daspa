@@ -14,7 +14,7 @@ def letter_page(b, E, L, son, words, distract, snd, color="#E4572E"):
     random.shuffle(gl)
     glh = "".join(f'<span style="display:inline-block;width:10mm;text-align:center;font-size:20pt;font-weight:600">{c}</span>' for c in gl)
     wc = "".join(f'<div class="card c"><span class="emo">{e}</span><div class="word" style="font-size:13pt">{w.replace(lo, f"<span style=color:#E4572E>{lo}</span>", 1)}</div></div>' for e, w in words)
-    ex1 = E(f"La lettre {lo} — {up}. Elle fait le son {son}. J'écoute, je regarde les mots.", f'<div class="flex"><div style="font-size:72pt;font-weight:800;color:#E4572E;line-height:1;width:55mm" class="c">{up}{lo}</div><div class="grid4 grow">{wc}</div></div>',
+    ex1 = E(f"La lettre {lo} — {up}. Elle fait le son {son}. J'écoute, je regarde les mots.", f'<div class="flex"><div style="font-size:{ {1: 72, 2: 46}.get(len(lo), 34)}pt;font-weight:800;color:#E4572E;line-height:1;width:55mm" class="c">{up}{lo}</div><div class="grid4 grow">{wc}</div></div>',
             ["ecoute", "regarde"], 1, "P", alpha=True, script=f"Faire entendre le son {son} longuement (sans dire « èm » : on dit le son). Dire chaque mot en insistant : {', '.join(w for _, w in words)}. Faire chercher des prénoms de la classe avec ce son.",
             sol="Activité orale.")
     ex2 = E(f"J'entoure toutes les lettres {lo}.", f'<div class="card" style="line-height:1.6">{glh}</div>', ["entoure"], 1, "B", alpha=True, sol=f"Il y a 7 lettres « {lo} ».")
