@@ -23,7 +23,7 @@ def _darken(hex_col, f=0.8):
 
 
 def avatar(key, size=90, mood="sourire", bubble=None, flip=False, bg=None):
-    """Buste d'un personnage. mood: sourire, rire, neutre, triste, surpris, pense."""
+    """Buste d'un personnage. mood: sourire, rire, neutre, triste, surpris, pense, fache."""
     c = CAST[key]
     skin = SKIN[c["skin"]]
     hc = c["hair_col"]
@@ -89,6 +89,8 @@ def avatar(key, size=90, mood="sourire", bubble=None, flip=False, bg=None):
         parts.append('<path d="M36 38 Q41 35 46 38 M54 36 Q59 33 64 36" stroke="#333" stroke-width="1.8" fill="none" stroke-linecap="round"/>')
     elif mood == "surpris":
         parts.append('<path d="M36 36 Q41 32 46 36 M54 36 Q59 32 64 36" stroke="#333" stroke-width="1.8" fill="none" stroke-linecap="round"/>')
+    elif mood == "fache":
+        parts.append('<path d="M35 36 L46 40 M65 36 L54 40" stroke="#333" stroke-width="2.4" stroke-linecap="round"/>')
     # lunettes
     if c.get("glasses"):
         parts.append('<circle cx="41" cy="45" r="7" fill="none" stroke="#333" stroke-width="1.6"/>'
@@ -107,6 +109,8 @@ def avatar(key, size=90, mood="sourire", bubble=None, flip=False, bg=None):
         parts.append('<path d="M42 60 Q50 53 58 60" stroke="#7A2E2E" stroke-width="2.2" fill="none" stroke-linecap="round"/>')
     elif mood == "surpris":
         parts.append('<ellipse cx="50" cy="58" rx="4" ry="5" fill="#7A2E2E"/>')
+    elif mood == "fache":
+        parts.append('<path d="M42 59 Q50 55 58 59" stroke="#7A2E2E" stroke-width="2.6" fill="none" stroke-linecap="round"/>')
     tr = ' transform="translate(100,0) scale(-1,1)"' if flip else ''
     svg = f'<svg viewBox="0 0 100 100" width="{size}" height="{size}" class="av"><g{tr}>{"".join(parts)}</g></svg>'
     if bubble:
