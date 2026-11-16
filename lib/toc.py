@@ -13,7 +13,7 @@ RUB = {  # rubrique -> (icône, libellé court)
     "Ouverture": ("🚪", "Ouverture"), "Mon plan de travail": ("🗂️", "Plan de travail"), "Découvrir": ("👀", "Découvrir (BD)"), "Lexique": ("🔤", "Vocabulaire"),
     "Leçon": ("📌", "Leçon"), "S'entraîner": ("✏️", "S'entraîner"), "Document de la vie": ("📄", "Document de la vie"), "Consignes & école": ("🎒", "Français de l'école"),
     "Sons": ("👂", "Sons"), "Je révise": ("🔁", "Révision"), "Atelier": ("🧩", "Atelier"), "★ Alpha": ("★", "Alpha"), "Tâche finale": ("🎯", "Tâche finale"),
-    "Test": ("📝", "Test"), "★ Alpha · Test": ("★", "Test Alpha"), "Je sais faire": ("✅", "Je sais faire"), "Mes mots": ("📒", "Mes mots"), "Le plan": ("🗺️", "Document"),
+    "Test": ("📝", "Test"), "★ Alpha · Test": ("★", "Test Alpha"), "★ Coup de pouce": ("★", "Coup de pouce"), "★ Coup de pouce · Test": ("★", "Test Coup de pouce"), "Mon livre": ("📘", "Mon livre"), "Je sais faire": ("✅", "Je sais faire"), "Mes mots": ("📒", "Mes mots"), "Le plan": ("🗺️", "Document"),
 }
 
 
@@ -161,7 +161,7 @@ def build_toc(Book, code, title, color, modules, annex=None, prof=None, start=1,
     S.page(f'<h1>Table des matières détaillée</h1><p class="muted mb4">{vol} · tous les numéros renvoient au <b>cahier élève</b>' + (" ; la colonne « Livret » renvoie à ce livret enseignant." if prof else ".") + '</p>' +
            table(["Je veux…", "Où regarder ?"], [[f"<b>{a}</b>", b2] for a, b2 in how], ["60mm", "122mm"]) +
            
-           '<h3 class="mt4">Les 12 modules en un coup d\'œil</h3>' + table(["", "Module", "Pages élève"] + (["Livret"] if prof else []),
+           f'<h3 class="mt4">Les {len(modules)} modules en un coup d\'œil</h3>' + table(["", "Module", "Pages élève"] + (["Livret"] if prof else []),
                                                                                [[f"<b>{num}</b>", t, pp(min(min(v) for v in b.marks.values()), b.n)] + ([pp(min(min(v) for v in T.marks.values()), T.n)] if prof else []) for num, t, b, T in modules] +
                                                                                ([["📎", "Annexes · mémos", pp(min(min(v) for v in annex.marks.values()), annex.n)] + ([""] if prof else [])] if annex else []),
                                                                                ["10mm", "112mm", "30mm"] + (["30mm"] if prof else [])), "Table des matières", levels=False)
@@ -181,7 +181,7 @@ def build_toc(Book, code, title, color, modules, annex=None, prof=None, start=1,
     def fiche(num, t, b, T):
         ents = entries(b)
         groups = [("📌 Leçons", ("Leçon",)), ("👀 BD · 🔤 Vocabulaire", ("Découvrir", "Lexique")), ("📄 Documents", ("Document de la vie", "Le plan")), ("🎒 Fr. de l'école", ("Consignes & école",)),
-                  ("👂 Sons", ("Sons",)), ("★ Alpha", ("★ Alpha",)), ("🧩 Ateliers", ("Atelier",)), ("🎯 Tâche · 🔁 Révision", ("Tâche finale", "Je révise")), ("📝 Évaluation", ("Test", "★ Alpha · Test", "Je sais faire", "Mes mots"))]
+                  ("👂 Sons", ("Sons",)), ("★ Parcours", ("★ Alpha", "★ Coup de pouce")), ("🧩 Ateliers", ("Atelier",)), ("🎯 Tâche · 🔁 Révision", ("Tâche finale", "Je révise")), ("📝 Évaluation", ("Test", "★ Alpha · Test", "★ Coup de pouce · Test", "Je sais faire", "Mes mots"))]
         rows = []
         for lab, rubs in groups:
             items, seen = [], set()
@@ -192,8 +192,8 @@ def build_toc(Book, code, title, color, modules, annex=None, prof=None, start=1,
                         x = f"<b>{sec.replace('Leçon ', 'L')}</b> {tt}"
                     if rub == "Je révise":
                         x = "🔁 révision"
-                    if rub in ("Test", "★ Alpha · Test", "Je sais faire", "Mes mots"):
-                        x = {"Test": "Test /40", "★ Alpha · Test": "★ Test Alpha /20", "Je sais faire": "Je sais faire", "Mes mots": "Mes mots"}[rub]
+                    if rub in ("Test", "★ Alpha · Test", "★ Coup de pouce · Test", "Je sais faire", "Mes mots"):
+                        x = {"Test": "Test /40", "★ Alpha · Test": "★ Test Alpha /20", "★ Coup de pouce · Test": "★ Test Coup de pouce /20", "Je sais faire": "Je sais faire", "Mes mots": "Mes mots"}[rub]
                     if x in seen:
                         continue
                     seen.add(x)
@@ -233,7 +233,7 @@ def build_toc(Book, code, title, color, modules, annex=None, prof=None, start=1,
 
     # 4. partie 3 : par type d'activité
     cats = [("📌 Toutes les leçons à étudier", ("Leçon",)), ("🎒 Français de l'école (méthodes)", ("Consignes & école",)), ("📄 Documents", ("Document de la vie", "Le plan")), ("👂 Sons et phonétique", ("Sons",)),
-            ("★ Parcours Alpha", ("★ Alpha",)), ("🧩 Ateliers et jeux", ("Atelier",)), ("🎯 Tâches finales", ("Tâche finale",)), ("📝 Tests", ("Test", "★ Alpha · Test"))]
+            ("★ Parcours Alpha / Coup de pouce", ("★ Alpha", "★ Coup de pouce")), ("🧩 Ateliers et jeux", ("Atelier",)), ("🎯 Tâches finales", ("Tâche finale",)), ("📝 Tests", ("Test", "★ Alpha · Test", "★ Coup de pouce · Test"))]
     rows = []
     for cat, rubs in cats:
         rows.append([f'<div style="background:{color};color:#fff;padding:1mm 2mm;border-radius:1mm;font-weight:800">{cat}</div>', ""])
@@ -243,8 +243,8 @@ def build_toc(Book, code, title, color, modules, annex=None, prof=None, start=1,
             for p1, p2, rub, sec, tt, ex in ents:
                 if rub in rubs or sec in rubs:
                     x = (ex[0] if rub == "Sons" and ex else tt)
-                    if rub in ("Test", "★ Alpha · Test"):
-                        x = "Test" if rub == "Test" else "★ Test Alpha"
+                    if rub in ("Test", "★ Alpha · Test", "★ Coup de pouce · Test"):
+                        x = "Test" if rub == "Test" else "★ Test " + rub.split(" · ")[0][2:]
                     if (x, rub) in seen:
                         continue
                     seen.add((x, rub))

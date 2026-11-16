@@ -10,6 +10,7 @@ CAST = {
     "mateo": dict(skin="moyen", hair="court_meche", hair_col="#3B2516", shirt="#4A7BD1", name="Mateo"),
     "bilal": dict(skin="moyen", hair="court", hair_col="#1d1d1d", shirt="#7A5BC7", name="Bilal", glasses=True),
     "fatou": dict(skin="fonce", hair="afro_puffs", hair_col="#1d1d1d", shirt="#F2C14E", name="Fatou", lashes=True),
+    "nour": dict(skin="moyen", hair="carre", hair_col="#2B1A12", shirt="#E07A1F", name="Nour", lashes=True),
     "prof": dict(skin="clair", hair="carre", hair_col="#8B4A2B", shirt="#2E4057", name="Mme Lambert", glasses=True, lashes=True, adult=True),
     "educ": dict(skin="fonce", hair="chauve_barbe", hair_col="#2a2a2a", shirt="#6B8F3E", name="M. Diallo", adult=True),
 }

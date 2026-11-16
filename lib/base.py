@@ -149,7 +149,7 @@ class Ex:
         p = "".join(picto(x, 30) for x in pictos)
         tags = ""
         if alpha:
-            tags += '<span class="alpha-tag">★ ALPHA</span>'
+            tags += f'<span class="alpha-tag">{getattr(type(self), "TAG", "★ ALPHA")}</span>'
         if atelier:
             tags += f'<span class="atl {atelier}">{ATELIERS[atelier]}</span>'
         n = f'<div class="ex-n">{self.n}</div>' if num else ''

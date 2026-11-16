@@ -3,6 +3,13 @@ import re
 import math
 from .base import *
 
+# Réglages du volume en cours (le volume 2 remplace le parcours ★ Alpha par ★ Coup de pouce)
+VOL = dict(num=1, track="★ Alpha", tag="★ ALPHA", col="#FFD166", plan="parcours Alpha")
+
+
+def set_volume(num, track, tag, col, plan):
+    VOL.update(num=num, track=track, tag=tag, col=col, plan=plan)
+
 
 def plan_de_travail(b, E, mnum, lessons, tache):
     cells = ""
@@ -13,7 +20,7 @@ def plan_de_travail(b, E, mnum, lessons, tache):
                   f'<span><b>{n}</b>{star} <span class="muted">p.{pg}</span></span>{dots(lv)}<span class="chk" style="width:3.6mm;height:3.6mm;margin:0"></span></div>')
     les = "<br>".join(f"☐ Leçon {i} · {t}" for i, t in enumerate(lessons, 1))
     plan = f'''<h2>Mon plan de travail · Module {mnum}</h2>
-<p class="sm">Quand j'ai fini un exercice et qu'il est corrigé, je coche la case ☑. Les ★ = parcours Alpha. La couleur = l'atelier :
+<p class="sm">Quand j'ai fini un exercice et qu'il est corrigé, je coche la case ☑. Les ★ = {VOL['plan']}. La couleur = l'atelier :
 <span class="atl A">🎧</span> <span class="atl B">📖</span> <span class="atl C">✏️</span> <span class="atl D">🧩</span> <span class="atl P">👩‍🏫</span> · gris = activité de classe.</p>
 <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:1.3mm">{cells}</div>
 <div class="grid3 mt4">
@@ -60,9 +67,9 @@ def helpers(b, E):
 
 
 def teacher_book(b, E, code, title, color, mnum, mtitle, objectifs, priorites, materiel, accueil, days, rituels, rotation, key, eval_html, extra_pages=(), start=1):
-    T = Book(code, f"Volume 1 · Module {mnum} · {mtitle} · Livret enseignant", color, teacher=True, start=start)
+    T = Book(code, f"Volume {VOL['num']} · Module {mnum} · {mtitle} · Livret enseignant", color, teacher=True, start=start)
     T.page(f'''<div style="background:{color};color:#fff;margin:-17mm -14mm 6mm -14mm;padding:20mm 14mm 10mm 14mm">
-<div style="font-size:12pt;font-weight:700;opacity:.9">LIVRET ENSEIGNANT · VOLUME 1 · MODULE {mnum}</div><div style="font-size:40pt;font-weight:800;line-height:1.05">{mtitle}</div>
+<div style="font-size:12pt;font-weight:700;opacity:.9">LIVRET ENSEIGNANT · VOLUME {VOL['num']} · MODULE {mnum}</div><div style="font-size:40pt;font-weight:800;line-height:1.05">{mtitle}</div>
 <div style="font-size:13pt;margin-top:3mm">Déroulement · scripts · corrigés · clé QCM · grilles d'évaluation</div></div>
 <div class="grid2">
 <div class="card"><h3 style="margin-top:0">Objectifs du module</h3><ul class="sm" style="padding-left:5mm;margin:0">{objectifs}</ul></div>
@@ -71,7 +78,7 @@ def teacher_book(b, E, code, title, color, mnum, mtitle, objectifs, priorites, m
 <h3>Durée</h3><p class="sm">± 10 jours de cours (± 20 périodes). Élève {b.n - min(min(v) for v in b.marks.values()) + 1} pages · {E.n} exercices.</p></div></div>
 <div class="attention mt4">{accueil}</div>''', "Vue d'ensemble")
     T.page(f'''<h2>Déroulement conseillé</h2>
-{table(["Jour", "Organisation", "Contenu (cahier élève)", "Groupe ★ Alpha"], [[f"<b>{d}</b>", o, c, a] for d, o, c, a in days], ["12mm", "30mm", "95mm", "45mm"])}
+{table(["Jour", "Organisation", "Contenu (cahier élève)", f"Groupe {VOL['track']}"], [[f"<b>{d}</b>", o, c, a] for d, o, c, a in days], ["12mm", "30mm", "95mm", "45mm"])}
 <h3 class="mt4">Rituels quotidiens (10 premières minutes)</h3><p class="sm">{rituels}</p>
 <h3>Rotation des ateliers</h3>
 {table(["Pôle", "Fiches", "Durée", "Autocorrection"], rotation, ["38mm", "70mm", "20mm", "54mm"])}''', "Déroulement")
@@ -136,7 +143,7 @@ def test_pages(b, num, title, Q, partB, oral, alpha_html):
     b.page(f'''<div class="flex" style="justify-content:space-between"><h2 style="margin:0">Partie B · J'écris</h2><span class="score">…… / 10</span></div>{partB}
 <div class="flex mt4" style="justify-content:space-between"><h2 style="margin:0">Partie C · Je parle avec la prof</h2><span class="score">…… / 10</span></div>
 {table(["Je sais…", "Points", "✅"], oral, ["120mm", "30mm", "32mm"])}<div class="card mt2 c"><span class="huge">TOTAL : …… / 40</span></div>''', "Test", levels=False)
-    b.page(f'<div style="background:#FFD166;margin:-17mm -14mm 4mm -14mm;padding:14mm 14mm 4mm 14mm"><div style="font-size:11pt;font-weight:800">★ ALPHA · 📝 TEST · MODULE {num}</div><div style="font-size:22pt;font-weight:800">{title}</div></div>{alpha_html}<div class="card c mt2"><span class="huge">TOTAL : …… / 20</span></div>', "★ Alpha · Test", levels=False)
+    b.page(f'<div style="background:{VOL['col']};margin:-17mm -14mm 4mm -14mm;padding:14mm 14mm 4mm 14mm"><div style="font-size:11pt;font-weight:800">{VOL['tag']} · 📝 TEST · MODULE {num}</div><div style="font-size:22pt;font-weight:800">{title}</div></div>{alpha_html}<div class="card c mt2"><span class="huge">TOTAL : …… / 20</span></div>', f"{VOL['track']} · Test", levels=False)
 
 
 def key_from(Q, answers):
