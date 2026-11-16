@@ -12,7 +12,7 @@ Génère les PDF élève et enseignant des 3 volumes (HTML + Chrome headless →
 
 ## État
 - Volume 2 « Je me débrouille » (A2, 14 modules) : M1-M7 faits (build/v2_m*.py ; M7 = 44 p. élève + 15 p. livret, modèle le plus récent ; carte SVG de Belgique réutilisable : fonction carte() dans build/v2_m6.py, importée par v2_m7). Réglages V2 dans lib/v2.py (★ Coup de pouce remplace ★ Alpha, couverture). Assemblage : python3 build/vol2.py (élève 300 p., prof 104 p.). Suite : V2 M8 « Écrans et médias ».
-- Volume 3 « Je réussis à l'école » : infrastructure créée (lib/v3.py : réglages, couverture, bandeau 🎓 Vers les épreuves, étiquettes de disciplines ; build/vol3.py : assemblage). **V3 M1 « Apprendre à apprendre » EN COURS dans une autre session (démarré le 16/11 vers 07 h 10 UTC, deux sessions tournent en parallèle)** : ne pas le refaire ; après le V2 M14, prendre le V3 M2.
+- Volume 3 « Je réussis à l'école » (B1 + FLSco, 16 modules) : **M1 « Apprendre à apprendre » fait** (build/v3_m1.py = modèle V3 : couverture + « Mon livre » + sommaire, pages 🎓 Vers les épreuves CE1D / DELF B1, étiquettes de disciplines ; 49 p. élève + 17 p. livret). Réglages V3 dans lib/v3.py (CP, EPR, disc_tag, v3_cover, v3_mon_livre). Assemblage : python3 build/vol3.py (élève 53 p., prof 22 p.). Suite V3 : M2 « La langue des maths » — à prendre seulement après le V2 M14 (ordre de la collection).
 - lib/art.py : humeur « fache » ajoutée aux avatars (sourcils froncés).
 - Volume 1 : TERMINÉ — 12 modules + annexes (8 p. de mémos, build/annexes.py) + table des matières détaillée et index (lib/toc.py), en tête du PDF prof et à la fin du PDF élève.
 - Volumes 2 et 3 : à faire (créer build/vol2.py, vol3.py sur le modèle de vol1.py).
